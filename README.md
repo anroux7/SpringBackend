@@ -12,8 +12,6 @@ added in the compose.yml file
 Run the multi-container application
 To Run, open up the terminal, navigate to the Spring Boot project directory where you have the docker-compose.yml, and run:
 $ docker-compose up -d
+
+https://hub.docker.com/r/anrouxbuhr/springbackend
 ```
-
-
-
-
