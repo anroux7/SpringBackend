@@ -1,0 +1,53 @@
+version: '3.6'
+services:
+  db:
+    image: postgres
+    #hostname: postgres
+    container_name: project-todo-db
+    environment:
+      POSTGRES_PASSWORD: 012344584
+      POSTGRES_USER: postgres
+      POSTGRES_DB: todoappdb
+    ports:
+      #- 5433:5432
+      - target: 5432
+        published: 5433
+        protocol: tcp
+        mode: host
+    networks:
+      - backdb
+    expose: 
+      - 5433
+  
+  postgresql:
+    build: 
+      context: ./postgresql
+      target:  finalApp
+    image: anrouxbuhr/springbackend
+    container_name: springbackend
+    #environment:
+    #  WAIT_HOSTS: postgres:5433
+    ports:
+      - 8085:8085
+    depends_on:
+      - db
+    networks:
+     # - frontback 
+      - backdb
+
+  vue-frontend:
+    build: ./vue-frontend
+    image: anrouxbuhr/docker-vuejs-nginx
+    container_name: docker-vuejs-nginx
+    ports:
+      - 8081:8080
+    depends_on:
+      - back
+    networks: 
+      - frontback 
+  
+networks: 
+  backdb:
+    driver: bridge
+  frontback:
+    driver: bridge

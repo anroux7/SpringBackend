@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  API:
+    image: 'anrouxbuhr/springbackend'
+    ports:
+      - "8085:8085"
+    depends_on:
+      PostgreSQL:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/todoappdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=012344584
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  PostgreSQL:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes: 
+        - ./db:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_PASSWORD=012344584
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - APP_DB_USER=anroux
+      - APP_DB_PASS=012344584
+      - APP_DB_NAME=todoappdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
