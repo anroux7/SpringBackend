@@ -1,5 +1,11 @@
 version: '3.1'
 services:
+  FrontEnd:
+    image: 'anrouxbuhr/docker-vuejs-nginx'
+    ports:
+      - "8081:8080"
+    depends_on:
+      - API
   API:
     image: 'anrouxbuhr/springbackend'
     ports:
