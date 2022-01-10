@@ -10,7 +10,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="postgresql" target="1.5" />
+      <module name="postgresql" target="17" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="postgresql" options="-parameters" />
+    </option>
   </component>
 </project>

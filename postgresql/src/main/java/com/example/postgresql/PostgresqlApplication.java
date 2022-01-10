@@ -11,15 +11,6 @@ public class PostgresqlApplication  {
 		SpringApplication.run(PostgresqlApplication.class, args);
 	}
 
-	// @Autowired
-	// private TodoRepository todoRepository;
-	// @Override
-	// public void run(String... args) throws Exception {
-	// 	// TODO Auto-generated method stub
-	//TodoItem todo1 = TodoItem.builder().text("test").day("Tuesday 4 th of jan 11:30 AM").reminder(false).build();
-	//todoRepository.save(todo1);
-	// }
-
 //	@Bean
 //	public WebMvcConfigurer corsConfigurer() {
 //		return new WebMvcConfigurer() {
